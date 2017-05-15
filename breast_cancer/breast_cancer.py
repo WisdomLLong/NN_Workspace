@@ -71,6 +71,6 @@ print('Accuracy of LR Classifier:', lr.score(X_test, y_test))
 #利用classification_report模块获得三个指标的结果
 print( classification_report(y_test, lr_y_predict, target_names=['Benign', 'Malignant']) )
 
-
-
+print('Accuracy of SGD Classifier:', sgdc.score(X_test, y_test))
+print( classification_report(y_test, sgdc_y_predict, target_names=['Benign', 'Malignant']) )
 
