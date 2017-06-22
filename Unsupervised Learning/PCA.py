@@ -38,8 +38,10 @@ def plot_pca_scatter():
         px = X_pca[:, 0][y_digits.as_matrix()==i]
         py = X_pca[:, 1][y_digits.as_matrix()==i]
         plt.scatter(px, py, c=colors[i])
-        
-    plt.legend(range(10).astype(str))
+    
+    # python3.x将xrange和range合并了，返回一个迭代器。不需要import numpy
+    # numpy.arange(1,5,0.5)最后一个是步长，它支持小数步长，而range不支持
+    plt.legend(np.arange(10).astype(str))
     plt.xlabel('First Principal Component')
     plt.ylabel('Second Principal Component')
     plt.show()
