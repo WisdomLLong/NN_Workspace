@@ -50,9 +50,6 @@ y_pca_svc_predict = svc.predict(pca_X_test)
 # 评估
 #########################################
 
-
-
-
 print(svc.score(pca_X_train, y_train))
 print(classification_report(y_test, y_pca_svc_predict, target_names=np.arange(10).astype(str)))
 
