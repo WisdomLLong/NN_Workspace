@@ -33,7 +33,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, \
 # 特征转换器，特征提取
 from sklearn.feature_extraction import DictVectorizer
 vec = DictVectorizer(sparse=False)
-# 转换特征后，我们发现凡是类别型的特征都单独玻璃出来，独成一列特征，数值型的则保持不变。
+# 转换特征后，我们发现凡是类别型的特征都单独剥离出来，独成一列特征，数值型的则保持不变。
 X_train = vec.fit_transform(X_train.to_dict(orient='record'))
 
 # 同样需要对测试数据进行转换
