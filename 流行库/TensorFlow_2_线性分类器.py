@@ -33,12 +33,12 @@ optimizer = tf.train.GradientDescentOptimizer(0.01)
 train = optimizer.minimize(loss)
 
 # 初始化所有变量
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 
 sess = tf.Session()
 # 执行变量初始化操作
 sess.run(init)
-
+print(sess.run(W))        #@@ 此处可以单独打印出变量W的值
 # 迭代1000轮次，训练参数
 for step in range(0, 1000):
     sess.run(train)
@@ -63,6 +63,13 @@ plt.xlabel('Clump Thickness')
 plt.ylabel('Cell Size')
 
 lx = np.arange(0, 12)
+
+# 这里要强调一下，我们以0.5作为分界面，所以计算方式如下
+ly = (0.5-sess.run(b) - lx*sess.run(W)[0][0]) / sess.run(W)[0][1]
+
+plt.plot(lx, ly, color = 'green')
+plt.show()
+
 
 
 
