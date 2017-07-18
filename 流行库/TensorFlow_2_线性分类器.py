@@ -18,6 +18,7 @@ y_test = np.float32(test['Type'].T)
 # 定义一个TensorFlow的变量b作为线性模型的截距，同时设置初始值为1.0
 b = tf.Variable(tf.zeros([1]))
 # 定义一个TensorFlow的变量W作为线性模型的系数，并设置初始值为-1.0至1.0之间均匀分布的随机数
+#@@ 这里的W是X_train的“两个”数据的系数值
 W = tf.Variable(tf.random_uniform([1,2], -1.0, 1.0))
 
 # 显示定义这个线性函数
@@ -38,7 +39,7 @@ init = tf.global_variables_initializer()
 sess = tf.Session()
 # 执行变量初始化操作
 sess.run(init)
-print(sess.run(W))        #@@ 此处可以单独打印出变量W的值
+print(sess.run(W),'\n')        #@@ 此处可以单独打印出变量W的值
 # 迭代1000轮次，训练参数
 for step in range(0, 1000):
     sess.run(train)
@@ -65,6 +66,7 @@ plt.ylabel('Cell Size')
 lx = np.arange(0, 12)
 
 # 这里要强调一下，我们以0.5作为分界面，所以计算方式如下
+#@@ 这里相当于把两类数据值一个当做x，一个当做y，所以有后面的出除法
 ly = (0.5-sess.run(b) - lx*sess.run(W)[0][0]) / sess.run(W)[0][1]
 
 plt.plot(lx, ly, color = 'green')
